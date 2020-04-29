@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./form.css" ;
 
 class Form extends Component {
   constructor(props) {
@@ -11,8 +12,10 @@ class Form extends Component {
       list: [],
     };
   }
-
-  handleSubmit = () => {
+  componentDidMount(){
+    this.getFromStorage();
+  }
+  addToList = () => {
     this.setState({
       list: [
         ...this.state.list,
@@ -25,8 +28,24 @@ class Form extends Component {
       name: "",
       age: "",
       gender: "male",
-    });
+    },()=>this.setToStorage());
+    
+    
   };
+  getFromStorage=()=>{
+    let objs=localStorage.getItem('myObjs');
+    let myList=[];
+    if(objs){
+      myList=JSON.parse(objs);
+      this.setState({
+        list:myList
+      });
+    }
+  }
+  setToStorage=()=>{
+    console.log(this.state.list);
+    localStorage.setItem('myObjs',JSON.stringify(this.state.list))
+  }
   deleteRecord = (index) => {
     this.state.list.splice(index, 1);
     this.setState({
@@ -36,9 +55,12 @@ class Form extends Component {
 
   render() {
     return (
-      <div>
-        Form Component
-        <hr />
+      <div class="component">
+        <div id="form" class="box">
+        <div class="title">
+        Form Component</div>
+        
+        <div >
         <form
           onSubmit={(event) => {
             if (
@@ -50,12 +72,12 @@ class Form extends Component {
               alert("Insert Every Field");
             } else {
               event.preventDefault();
-              this.handleSubmit();
+              this.addToList();
             }
           }}
         >
-          <label>Name</label>
-          <input
+          
+          <input class="input"
             type="text"
             name="Name"
             placeholder="Enter Name"
@@ -67,8 +89,8 @@ class Form extends Component {
             }}
           ></input>
           <br></br>
-          <label>Age</label>
-          <input
+         
+          <input class="input"
             type="number"
             name="Age"
             placeholder="Enter Age"
@@ -91,26 +113,31 @@ class Form extends Component {
             <option value="female">Female</option>
           </select>
           <br></br>
-          <button type="submit">Submit</button>
+          <button class="btn" type="submit">Submit</button>
         </form>
-        <hr></hr>
-        <center>
-          <h2>Table</h2>
-        </center>
+        </div>
+        </div>
+        
+        
+        <div id="table" class="box">
+          <div class="title">Table</div>
+        <div >
         <table>
+          <thead>
           <tr>
             <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
             <th>Action</th>
           </tr>
+          </thead>
           {this.state.list.map((element, index) => (
             <tr>
               <td>{element.name}</td>
               <td>{element.age}</td>
               <td>{element.gender}</td>
               <td>
-                <button
+                <button class="btn" id="del"
                   type="button"
                   onClick={(e) => {
                     this.deleteRecord(index);
@@ -122,6 +149,8 @@ class Form extends Component {
             </tr>
           ))}
         </table>
+        </div>
+        </div>
       </div>
     );
   }
