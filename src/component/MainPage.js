@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Form from "./Forms/Form";
 import Table from "./Tables/Table";
 import "./mainPage.css";
+
+import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import Notfound from "./notfound";
+
 class MainPage extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +14,10 @@ class MainPage extends Component {
       name: "",
       age: "",
       gender: "male",
+      email: "",
+      pwd: "",
       list: [],
+      isVerified:false
     };
   }
   componentDidMount() {
@@ -19,13 +26,13 @@ class MainPage extends Component {
   addToList = (item) => {
     this.setState(
       {
-        list: [
-          ...this.state.list,
-          item,
-        ],
+        list: [...this.state.list, item],
         name: "",
         age: "",
+        email: "",
+        pwd: "",
         gender: "male",
+        isVerified:false
       },
       this.setToStorage
     );
@@ -49,16 +56,28 @@ class MainPage extends Component {
     this.setState({
       list: this.state.list,
     });
+    this.setToStorage();
   };
+
   render() {
     return (
-      <div className="mainpage">
-        
-        <Form
-          addToList={this.addToList}
-        />
-        <Table list={this.state.list} deleteRecord={this.deleteRecord} />
-      </div>
+      <Router>
+        <div className="mainpage">
+          <Switch>
+            <Route exact path="/">
+              <Form addToList={this.addToList} />
+            </Route>
+            <Route path="/verify">
+              <Table
+                list={this.state.list}
+                deleteRecord={this.deleteRecord}
+               
+              />
+            </Route>
+            <Route component={Notfound} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
