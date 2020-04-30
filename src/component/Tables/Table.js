@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Form from '../Forms/Form';
-
+import "./table.css";
  class Table extends Component {
 
 
@@ -10,10 +10,10 @@ import Form from '../Forms/Form';
         return (
             <div>
                 
-                <div id="table" class="box">
+                <div id="table" >
           <div class="title">Table</div>
         <div >
-        <table>
+        <table className="box">
           <thead>
           <tr>
             <th>Name</th>
@@ -22,6 +22,7 @@ import Form from '../Forms/Form';
             <th>Action</th>
           </tr>
           </thead>
+          <tbody>
           {list.map((element, index) => (
             <tr>
               <td>{element.name}</td>
@@ -39,6 +40,7 @@ import Form from '../Forms/Form';
               </td>
             </tr>
           ))}
+          </tbody>
         </table>
         </div>
         </div>

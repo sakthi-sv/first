@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./form.css";
 
 class Form extends Component {
   constructor(props) {
@@ -12,17 +12,17 @@ class Form extends Component {
     };
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { addToList } = this.props;
     const {name, age, gender} = this.state
 
     return (
       <div class="component">
-        <div id="form" class="box">
+        <div id="form" >
           <div class="title">Form Component</div>
 
-          <div>
-            <form
+          <div >
+            <form className="box"
               onSubmit={(event) => {
                 event.preventDefault();
                 if (name === "" || age === "" || gender === "") {
@@ -36,7 +36,7 @@ class Form extends Component {
                 class="input"
                 type="text"
                 name="Name"
-                placeholder="Enter Name"
+                placeholder="Name"
                 value={this.state.name}
                 onChange={(event) => {
                   this.setState({
@@ -50,7 +50,7 @@ class Form extends Component {
                 class="input"
                 type="number"
                 name="Age"
-                placeholder="Enter Age"
+                placeholder="Age"
                 min="1"
                 value={this.state.age}
                 onChange={(event) => {
@@ -58,16 +58,16 @@ class Form extends Component {
                 }}
               ></input>
               <br></br>
-              <label>Gender</label>
-              <select
+              <label >Gender</label>
+              <select className="gender"
                 value={this.state.gender}
                 onChange={(event) => {
                   this.setState({ gender: event.target.value });
                 }}
               >
-                <option value="male">Male</option>
+                <option className="gender" value="male">Male</option>
 
-                <option value="female">Female</option>
+                <option className="gender" value="female">Female</option>
               </select>
               <br></br>
               <button class="btn" type="submit">

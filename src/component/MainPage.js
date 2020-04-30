@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Forms/Form";
 import Table from "./Tables/Table";
-
+import "./mainPage.css";
 class MainPage extends Component {
   constructor(props) {
     super(props);
@@ -52,11 +52,12 @@ class MainPage extends Component {
   };
   render() {
     return (
-      <div>
-        <Table list={this.state.list} deleteRecord={this.deleteRecord} />
+      <div className="mainpage">
+        
         <Form
           addToList={this.addToList}
         />
+        <Table list={this.state.list} deleteRecord={this.deleteRecord} />
       </div>
     );
   }
