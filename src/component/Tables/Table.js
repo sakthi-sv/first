@@ -31,7 +31,10 @@ class Table extends Component {
     const { deleteRecord } = this.props;
     return (
       <div>
-        <Link to="/">Register</Link>
+        <Link to="/"><button  class="btn"
+                          type="button">Register</button></Link>
+        <Link to="/movies"><button  class="btn"
+                          type="button">Movies</button></Link>
         <div id="table">
           <div class="title">Table</div>
           <div>

@@ -5,6 +5,7 @@ import "./mainPage.css";
 
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import Notfound from "./notfound";
+import Movies from "./Movies/Movies";
 
 class MainPage extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class MainPage extends Component {
       email: "",
       pwd: "",
       list: [],
-      isVerified:false
+      isVerified: false,
     };
   }
   componentDidMount() {
@@ -32,7 +33,7 @@ class MainPage extends Component {
         email: "",
         pwd: "",
         gender: "male",
-        isVerified:false
+        isVerified: false,
       },
       this.setToStorage
     );
@@ -48,7 +49,7 @@ class MainPage extends Component {
     }
   };
   setToStorage = () => {
-    console.log(this.state.list);
+    //console.log(this.state.list);
     localStorage.setItem("myObjs", JSON.stringify(this.state.list));
   };
   deleteRecord = (index) => {
@@ -67,12 +68,11 @@ class MainPage extends Component {
             <Route exact path="/">
               <Form addToList={this.addToList} />
             </Route>
+            <Route exact path="/movies">
+              <Movies />
+            </Route>
             <Route path="/verify">
-              <Table
-                list={this.state.list}
-                deleteRecord={this.deleteRecord}
-               
-              />
+              <Table list={this.state.list} deleteRecord={this.deleteRecord} />
             </Route>
             <Route component={Notfound} />
           </Switch>
