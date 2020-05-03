@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "./Forms/Form";
 import Table from "./Tables/Table";
 import "./mainPage.css";
+import Sample from "./Sample";
 
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import Notfound from "./notfound";
@@ -66,7 +67,8 @@ class MainPage extends Component {
         <div className="mainpage">
           <Switch>
             <Route exact path="/">
-              <Form addToList={this.addToList} />
+              <Sample />
+              {/* <Form addToList={this.addToList} /> */}
             </Route>
             <Route exact path="/movies">
               <Movies />
