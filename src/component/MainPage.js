@@ -7,6 +7,7 @@ import Sample from "./Sample";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import Notfound from "./notfound";
 import Movies from "./Movies/Movies";
+import Axios from "axios";
 
 class MainPage extends Component {
   constructor(props) {
@@ -60,6 +61,15 @@ class MainPage extends Component {
     });
     this.setToStorage();
   };
+  setToDB =(item)=>{
+    Axios.post('/signup',{item})
+      .then((res)=>{
+        console.log(res);
+      },(error)=>{
+        console.log(error);
+      });
+  }
+
 
   render() {
     return (
@@ -67,8 +77,8 @@ class MainPage extends Component {
         <div className="mainpage">
           <Switch>
             <Route exact path="/">
-              <Sample />
-              {/* <Form addToList={this.addToList} /> */}
+              {/* <Sample /> */}
+             <Form addToList={this.setToDB} /> 
             </Route>
             <Route exact path="/movies">
               <Movies />
