@@ -11,8 +11,8 @@ class Form extends Component {
       age: "",
       gender: "male",
       email: "",
-      pwd: "",
-      cpwd: "",
+      password: "",
+      cpassword: "",
       isVerified:false
     };
   }
@@ -20,7 +20,7 @@ class Form extends Component {
     // console.log(this.props);
     const { addToList } = this.props;
 
-    const { name, age, gender, email, pwd, cpwd,isVerified } = this.state;
+    const { name, age, gender, email, password, cpassword,isVerified } = this.state;
 
     return (
       <div className="component">
@@ -37,15 +37,15 @@ class Form extends Component {
                   age === "" ||
                   gender === "" ||
                   email === "" ||
-                  pwd === "" ||
-                  cpwd === ""
+                  password === "" ||
+                  cpassword === ""
                 ) {
                   alert("Insert Every Field");
-                } else if (pwd !== cpwd) {
+                } else if (password !== cpassword) {
                   alert("Password and Confirm Password didn't match");
                 } else {
-                  addToList({ name, age, gender, email, pwd ,isVerified});
-                  this.props.history.push("/verify");
+                  addToList({ name, age, gender, email, password ,isVerified});
+                  this.props.history.push("/users");
                 }
               }}
             >
@@ -104,21 +104,21 @@ class Form extends Component {
               <br></br>
               <input
                 type="password"
-                name="pwd"
+                name="password"
                 placeholder="Password"
-                value={pwd}
+                value={password}
                 onChange={(event) => {
-                  this.setState({ pwd: event.target.value });
+                  this.setState({ password: event.target.value });
                 }}
               ></input>
               <br></br>
               <input
                 type="password"
-                name="cpwd"
+                name="cpassword"
                 placeholder="Confirm Password"
-                value={cpwd}
+                value={cpassword}
                 onChange={(event) => {
-                  this.setState({ cpwd: event.target.value });
+                  this.setState({ cpassword: event.target.value });
                 }}
               ></input>
               <input type="hidden" name="isVerified" value={isVerified}/>

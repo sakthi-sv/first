@@ -8,6 +8,7 @@ import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import Notfound from "./notfound";
 import Movies from "./Movies/Movies";
 import Axios from "axios";
+import TableDB from "./Tables/TableDB";
 
 class MainPage extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class MainPage extends Component {
     this.setToStorage();
   };
   setToDB =(item)=>{
+    console.log(item);
     Axios.post('/signup',{item})
       .then((res)=>{
         console.log(res);
@@ -69,6 +71,7 @@ class MainPage extends Component {
         console.log(error);
       });
   }
+
 
 
   render() {
@@ -85,6 +88,9 @@ class MainPage extends Component {
             </Route>
             <Route path="/verify">
               <Table list={this.state.list} deleteRecord={this.deleteRecord} />
+            </Route>
+            <Route path="/users">
+              <TableDB />
             </Route>
             <Route component={Notfound} />
           </Switch>
