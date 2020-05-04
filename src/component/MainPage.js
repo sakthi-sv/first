@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Form from "./Forms/Form";
+import Login from "./Forms/Login";
 import Table from "./Tables/Table";
 import "./mainPage.css";
 import Sample from "./Sample";
@@ -91,7 +92,11 @@ class MainPage extends Component {
             </Route>
             <Route path="/users">
               <TableDB />
+            </Route>            
+            <Route path="/login">
+              <Login />
             </Route>
+
             <Route component={Notfound} />
           </Switch>
         </div>

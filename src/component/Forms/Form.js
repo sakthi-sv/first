@@ -45,7 +45,7 @@ class Form extends Component {
                   alert("Password and Confirm Password didn't match");
                 } else {
                   addToList({ name, age, gender, email, password ,isVerified});
-                  this.props.history.push("/users");
+                  this.props.history.push("/login");
                 }
               }}
             >
