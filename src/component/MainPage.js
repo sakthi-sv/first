@@ -65,7 +65,7 @@ class MainPage extends Component {
   };
   setToDB =(item)=>{
     console.log(item);
-    Axios.post('/signup',{item})
+    Axios.post('http://localhost:8000/signup',{item})
       .then((res)=>{
         console.log(res);
       },(error)=>{

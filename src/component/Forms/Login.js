@@ -17,7 +17,7 @@ import { Redirect, withRouter } from "react-router-dom";
   }
     getfromDB =(item)=>{
    
-        Axios.post('/signup/login',{item})
+        Axios.post('http://localhost:8000/signup/login',{item})
           .then((res)=>{
             console.log(res);
             this.setState({

@@ -16,7 +16,7 @@ export default class TableDB extends Component {
   }
   getfromDB =()=>{
    
-    Axios.get('/signup')
+    Axios.get('http://localhost:8000/signup')
       .then((res)=>{
         console.log(res);
         this.setState({
@@ -33,14 +33,14 @@ export default class TableDB extends Component {
         list: this.state.list,
       });
       console.log("ewgg",this.state.list);
-      Axios.delete("/signup/"+id)
+      Axios.delete("http://localhost:8000/signup/"+id)
         .then((res)=>{
             console.log(res);
         })
 
   }
   putToDB=(id)=>{
-        Axios.put("/signup/"+id,{"isVerified":true})
+        Axios.put("http://localhost:8000/signup/"+id,{"isVerified":true})
             .then((res)=>{
                 console.log(res);
             })
