@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class Movies extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       moviesList: [],
       limit: 10,
       page: 1,
       isLoading: true,
     };
+    let isValid=localStorage.getItem("isValid");
+    console.log("wf",isValid);
+    if(!isValid)
+      props.history.push("/login");
   }
   componentDidMount() {
     this.fetchData();

@@ -2,32 +2,36 @@ import React, { Component } from 'react'
 import Axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
   class Login extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             name:"",
             password:"",
             isValid:false
         }
+        if(localStorage.getItem("isValid")){
+          this.props.history.push("/users");
+        }
     }
     Validate(isValid){
-       
+     if(isValid){
             alert("welcome"+this.state.name);
-            this.props.history.push("/users");
+            this.props.history.push("/users");}
+      else  alert("Invalid Username or password");
   }
     getfromDB =(item)=>{
    
-        Axios.post('http://localhost:8000/signup/login',{item})
+        Axios.post('http://localhost:8000/signup/login',item)
           .then((res)=>{
             console.log(res);
             this.setState({
                 isValid:res.data.isValid
-            })
+              })
+              localStorage.setItem("isValid", res.data.isValid);
+              this.Validate(res.data.isValid);
           },(error)=>{
             console.log(error);
           });
-          console.log(this.state.isValid);
-          this.Validate(this.state.isValid);
       }
 
     render() {

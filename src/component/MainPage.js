@@ -4,7 +4,7 @@ import Login from "./Forms/Login";
 import Table from "./Tables/Table";
 import "./mainPage.css";
 import Sample from "./Sample";
-
+import { Redirect, withRouter } from "react-router-dom";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import Notfound from "./notfound";
 import Movies from "./Movies/Movies";
@@ -72,7 +72,9 @@ class MainPage extends Component {
         console.log(error);
       });
   }
+check(){
 
+}
 
 
   render() {
@@ -80,18 +82,20 @@ class MainPage extends Component {
       <Router>
         <div className="mainpage">
           <Switch>
-            <Route exact path="/">
-              {/* <Sample /> */}
+          <Route exact path="/">
+              <Login />
+              </Route>
+            <Route exact path="/signup">
              <Form addToList={this.setToDB} /> 
-            </Route>
+            </Route> 
             <Route exact path="/movies">
-              <Movies />
+              <Movies check={this.check} />
             </Route>
-            <Route path="/verify">
-              <Table list={this.state.list} deleteRecord={this.deleteRecord} />
-            </Route>
+            {/* <Route path="/verify">
+              <Table list={this.state.list} deleteRecord={this.deleteRecord}  />
+            </Route> */}
             <Route path="/users">
-              <TableDB />
+              <TableDB check={this.check} />
             </Route>            
             <Route path="/login">
               <Login />

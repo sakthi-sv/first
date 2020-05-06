@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import "./table.css";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-export default class TableDB extends Component {
-  constructor() {
-    super();
+import { Redirect, withRouter } from "react-router-dom";
+ class TableDB extends Component {
+  constructor(props) {
+    super(props);
+    let isValid=localStorage.getItem("isValid");
+    if(!isValid)
+      props.history.push("/login");
+
     this.state = {
       list: [],
       selectedId: -1,
@@ -58,11 +63,19 @@ export default class TableDB extends Component {
   };
 
   render() {
-      console.log("hi")
+      
     const { list } = this.state;
+    
     return (
       <div>
-        <Link to="/">
+          <Link to="/login">
+          <button class="btn" type="button" onClick={() =>
+            localStorage.removeItem("isValid")
+          }>
+            Logout
+          </button>
+        </Link>
+        <Link to="/signup">
           <button class="btn" type="button">
             Register
           </button>
@@ -162,3 +175,4 @@ export default class TableDB extends Component {
     );
   }
 }
+export default withRouter(TableDB);
