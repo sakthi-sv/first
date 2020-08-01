@@ -1,15 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import LoginOauth from "./component/loginOauth";
+// import MainPage from "./component/MainPage";
+import { Provider } from 'react-redux'
 
-import Form from "./component/Forms/Form";
-import MainPage from "./component/MainPage";
 
 function App() {
   return (
-    <div className="App">
-      <MainPage />
-    </div>
+    // <Provider store={store}>
+      <div className="App">
+        <LoginOauth />
+      </div>
+    // </Provider>
   );
 }
 
