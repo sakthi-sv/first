@@ -9,18 +9,16 @@ class Form extends Component {
     this.state = {
       name: "",
       age: "",
-      gender: "male",
-      email: "",
-      password: "",
+      gender: "male", email: "", password: "",
       cpassword: "",
-      isVerified:false
+      isVerified: false
     };
   }
   render() {
     // console.log(this.props);
     const { addToList } = this.props;
 
-    const { name, age, gender, email, password, cpassword,isVerified } = this.state;
+    const { name, age, gender, email, password, cpassword, isVerified } = this.state;
 
     return (
       <div className="component">
@@ -44,7 +42,7 @@ class Form extends Component {
                 } else if (password !== cpassword) {
                   alert("Password and Confirm Password didn't match");
                 } else {
-                  addToList({ name, age, gender, email, password ,isVerified});
+                  addToList({ name, age, gender, email, password, isVerified });
                   this.props.history.push("/login");
                 }
               }}
@@ -121,7 +119,7 @@ class Form extends Component {
                   this.setState({ cpassword: event.target.value });
                 }}
               ></input>
-              <input type="hidden" name="isVerified" value={isVerified}/>
+              <input type="hidden" name="isVerified" value={isVerified} />
               <br></br>
               <button class="btn" type="submit">
                 Register
